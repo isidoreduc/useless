@@ -1,6 +1,8 @@
-﻿using API.Data;
-using API.Entities;
+﻿
+using Core.Entities;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll() => Ok(ctx.Products);
+        public async Task<ActionResult<List<Product>>> GetAll() =>  Ok(await ctx.Products.ToListAsync());
 
         [HttpGet("{id}")]
-        public IActionResult GetOne(int id) => Ok(ctx.Products.Find(id));        
+        public async Task<IActionResult> GetOne(int id) => 
+            Ok(await ctx.Products.FirstOrDefaultAsync(p => p.Id == id));        
     }
 }
