@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Data;
+using API.Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,17 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
+        private readonly StoreContext ctx;
+
+        public ProductController(StoreContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
         [HttpGet]
-        public string GetAll() => "all products";
+        public IActionResult GetAll() => Ok(ctx.Products);
 
         [HttpGet("{id}")]
-        public string GetOne(int id) => "one product";        
+        public IActionResult GetOne(int id) => Ok(ctx.Products.Find(id));        
     }
 }
