@@ -15,12 +15,12 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-            private readonly IProductRepository repo;
+        private readonly IProductRepository repo;
 
-            public ProductsController(IProductRepository repo)
-            {
-                this.repo = repo;
-            }
+        public ProductsController(IProductRepository repo)
+        {
+            this.repo = repo;
+        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts() =>  
@@ -28,6 +28,14 @@ namespace API.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(int id) => 
-            Ok(await repo.GetProductAsync(id));        
+            Ok(await repo.GetProductAsync(id));    
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands() =>  
+            Ok(await repo.GetProductBrandsAsync());
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes() =>  
+            Ok(await repo.GetProductTypesAsync());    
     }
 }

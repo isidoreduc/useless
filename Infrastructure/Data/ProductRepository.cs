@@ -19,9 +19,20 @@ namespace Infrastructure.Data
                 return await ctx.Products.FindAsync(id);
             }
 
+            public async Task<IEnumerable<ProductBrand>> GetProductBrandsAsync()
+            {
+                  return await ctx.ProductBrands.ToListAsync();
+            }
+
             public async Task<IEnumerable<Product>> GetProductsAsync()
             {
                   return await ctx.Products.ToListAsync();
+            }
+
+            public async Task<IEnumerable<ProductType>> GetProductTypesAsync()
+            {
+                  return await ctx.ProductTypes.ToListAsync();
+
             }
       }
 }
