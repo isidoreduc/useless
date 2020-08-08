@@ -1,4 +1,6 @@
 ﻿
+using API.DTOs;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
@@ -19,21 +21,37 @@ namespace API.Controllers
             private readonly IGenericRepository<Product> productRepo;
             private readonly IGenericRepository<ProductBrand> brandRepo;
             private readonly IGenericRepository<ProductType> typeRepo;
+            private readonly IMapper mapper;
 
-            public ProductsController(IGenericRepository<Product> productRepo, IGenericRepository<ProductBrand> brandRepo, IGenericRepository<ProductType> typeRepo)
+            public ProductsController(IGenericRepository<Product> productRepo, IGenericRepository<ProductBrand> brandRepo, IGenericRepository<ProductType> typeRepo, IMapper mapper)
             {
+                  this.mapper = mapper;
                   this.typeRepo = typeRepo;
                   this.brandRepo = brandRepo;
                   this.productRepo = productRepo;
             }
 
             [HttpGet]
-            public async Task<ActionResult<IEnumerable<Product>>> GetProducts() =>
-                Ok(await productRepo.GetListAsync(new ProductsWithBrandsAndTypes()));
+            public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts() =>
+                Ok(
+                    mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(
+                        await productRepo.GetListAsync(
+                            new ProductsWithBrandsAndTypes()
+                        )
+                    )
+                );
 
             [HttpGet("{id}")]
             public async Task<IActionResult> GetProductById(int id) =>
-                Ok(await productRepo.GetEntityWithSpec(new ProductsWithBrandsAndTypes(id)));
+                Ok(
+                    mapper.Map<Product, ProductDTO>(
+                        await productRepo.GetEntityWithSpec(
+                            new ProductsWithBrandsAndTypes(
+                                id
+                            )
+                        )
+                    )
+                );
 
             [HttpGet("brands")]
             public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands() =>
