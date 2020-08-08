@@ -16,7 +16,10 @@ namespace Infrastructure.Data
             }
             public async Task<Product> GetProductAsync(int id)
             {
-                return await ctx.Products.FindAsync(id);
+                  return await ctx.Products
+                        .Include(p => p.ProductBrand)
+                        .Include(p => p.ProductType)
+                        .FirstOrDefaultAsync(p => p.Id == id);
             }
 
             public async Task<IEnumerable<ProductBrand>> GetProductBrandsAsync()
@@ -26,13 +29,15 @@ namespace Infrastructure.Data
 
             public async Task<IEnumerable<Product>> GetProductsAsync()
             {
-                  return await ctx.Products.ToListAsync();
+                  return await ctx.Products
+                        .Include(p => p.ProductBrand)
+                        .Include(p => p.ProductType)
+                        .ToListAsync();
             }
 
             public async Task<IEnumerable<ProductType>> GetProductTypesAsync()
             {
                   return await ctx.ProductTypes.ToListAsync();
-
             }
       }
 }
