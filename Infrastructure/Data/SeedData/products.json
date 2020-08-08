@@ -1,146 +1,146 @@
 [
-  {
-    "Name": "Gulag Speedster Board 2000",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 200,
-    "PictureUrl": "images/products/sb-ang1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Green Gulag Board 3000",
-    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 150,
-    "PictureUrl": "images/products/sb-ang2.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Tankette Board Speed Rush 3",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/sb-Tankette1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Net Tankette Super Board",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 300,
-    "PictureUrl": "images/products/sb-Tankette2.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Soyuzelle Board Super Whizzy Fast",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 250,
-    "PictureUrl": "images/products/sb-Soyuzelle1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Soyuzelle Entry Board",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 120,
-    "PictureUrl": "images/products/sb-ts1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 5
-  },
-  {
-    "Name": "Tankette Blue Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 10,
-    "PictureUrl": "images/products/hat-Tankette1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Green Soyuzelle Woolen Hat",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 8,
-    "PictureUrl": "images/products/hat-Soyuzelle1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Purple Soyuzelle Woolen Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 15,
-    "PictureUrl": "images/products/hat-Soyuzelle2.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Blue Code Gloves",
-    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 18,
-    "PictureUrl": "images/products/glove-code1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
-  },
-  {
-    "Name": "Green EnCode Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 15,
-    "PictureUrl": "images/products/glove-code2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
-  },
-  {
-    "Name": "Purple Soyuzelle Gloves",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
-    "Price": 16,
-    "PictureUrl": "images/products/glove-Soyuzelle1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Green Soyuzelle Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 14,
-    "PictureUrl": "images/products/glove-Soyuzelle2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Reducation Red Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 250,
-    "PictureUrl": "images/products/boot-redis1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 6
-  },
-  {
-    "Name": "Tankette Red Boots",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 189.99,
-    "PictureUrl": "images/products/boot-Tankette2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Tankette Purple Boots",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 199.99,
-    "PictureUrl": "images/products/boot-Tankette1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Gulag Purple Boots",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 150,
-    "PictureUrl": "images/products/boot-ang2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Gulag Blue Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/boot-ang1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 1
-  }
+    {
+        "Name": "Gulag Speedster Board 2000",
+        "Description": "Blue bottle selfies keytar, jianbing meggings chillwave meditation mlkshk you probably haven't heard of them kale chips pug shoreditch letterpress. Poutine irony af mixtape.",
+        "Price": 200,
+        "PictureUrl": "images/products/sb-ang1.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 1
+    },
+    {
+        "Name": "Green Gulag Board 3000",
+        "Description": "Paleo gochujang franzen four dollar toast before they sold out tacos. Etsy vegan raclette la croix pour-over pork belly, hoodie meggings.",
+        "Price": 150,
+        "PictureUrl": "images/products/sb-ang2.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 1
+    },
+    {
+        "Name": "Tankette Board Speed Rush 3",
+        "Description": "Raclette actually taxidermy, you probably haven't heard of them +1 YOLO banh mi meh pok pok stumptown deep v. Neutra shabby chic master cleanse mustache heirloom asymmetrical pop-up.",
+        "Price": 180,
+        "PictureUrl": "images/products/sb-Tankette1.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 2
+    },
+    {
+        "Name": "Net Tankette Super Board",
+        "Description": "Tousled 8-bit roof party pickled leggings. Venmo bushwick hexagon before they sold out hoodie post-ironic kogi thundercats polaroid photo booth YOLO.",
+        "Price": 300,
+        "PictureUrl": "images/products/sb-Tankette2.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 2
+    },
+    {
+        "Name": "Soyuzelle Board Super Whizzy Fast",
+        "Description": "Tofu messenger bag hammock bushwick letterpress knausgaard blue bottle. 8-bit direct trade 3 wolf moon, cray man braid poke schlitz godard chicharrones vegan.",
+        "Price": 250,
+        "PictureUrl": "images/products/sb-Soyuzelle1.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 4
+    },
+    {
+        "Name": "Soyuzelle Entry Board",
+        "Description": "Readymade williamsburg farm-to-table sriracha, intelligentsia cornhole snackwave synth banh mi. Asymmetrical tofu keffiyeh microdosing austin coloring book poutine pickled, keytar quinoa tote bag farm-to-table.",
+        "Price": 120,
+        "PictureUrl": "images/products/sb-ts1.png",
+        "ProductTypeId": 1,
+        "ProductBrandId": 5
+    },
+    {
+        "Name": "Tankette Blue Hat",
+        "Description": " Truffaut tacos intelligentsia vegan man braid mumblecore taxidermy man bun migas lumbersexual.",
+        "Price": 10,
+        "PictureUrl": "images/products/hat-Tankette1.png",
+        "ProductTypeId": 2,
+        "ProductBrandId": 2
+    },
+    {
+        "Name": "Green Soyuzelle Woolen Hat",
+        "Description": "Readymade XOXO scenester brooklyn farm-to-table forage tote bag. Polaroid etsy four loko waistcoat. Neutra kombucha deep v, trust fund flannel yr salvia sustainable mlkshk.",
+        "Price": 8,
+        "PictureUrl": "images/products/hat-Soyuzelle1.png",
+        "ProductTypeId": 2,
+        "ProductBrandId": 4
+    },
+    {
+        "Name": "Purple Soyuzelle Woolen Hat",
+        "Description": "Hammock adaptogen freegan vape selfies, fanny pack drinking vinegar pork belly jianbing gentrify flexitarian fashion axe. 3 wolf moon next level blue bottle enamel pin tumeric.",
+        "Price": 15,
+        "PictureUrl": "images/products/hat-Soyuzelle2.png",
+        "ProductTypeId": 2,
+        "ProductBrandId": 4
+    },
+    {
+        "Name": "Blue Code Gloves",
+        "Description": "Glossier marfa before they sold out drinking vinegar sustainable, hoodie tbh humblebrag hexagon fingerstache asymmetrical slow-carb. Activated charcoal gluten-free paleo bitters you probably haven't heard of them.",
+        "Price": 18,
+        "PictureUrl": "images/products/glove-code1.png",
+        "ProductTypeId": 4,
+        "ProductBrandId": 3
+    },
+    {
+        "Name": "Green EnCode Gloves",
+        "Description": "Pickled disrupt intelligentsia unicorn banh mi. Hashtag keytar ennui green juice photo booth. Trust fund fashion axe bespoke iPhone, live-edge typewriter scenester hammock waistcoat coloring book salvia listicle shabby chic.",
+        "Price": 15,
+        "PictureUrl": "images/products/glove-code2.png",
+        "ProductTypeId": 4,
+        "ProductBrandId": 3
+    },
+    {
+        "Name": "Purple Soyuzelle Gloves",
+        "Description": "Food truck glossier synth, distillery sustainable DIY etsy austin four loko tattooed live-edge mixtape master cleanse art party. Yuccie PBR&B hella, meh blog fixie sartorial +1 coloring book. ",
+        "Price": 16,
+        "PictureUrl": "images/products/glove-Soyuzelle1.png",
+        "ProductTypeId": 4,
+        "ProductBrandId": 4
+    },
+    {
+        "Name": "Green Soyuzelle Gloves",
+        "Description": "Four dollar toast marfa listicle glossier plaid. Pickled poke williamsburg salvia yuccie iceland mlkshk copper mug raw denim ugh cloud bread wayfarers. Knausgaard fixie enamel pin kale chips.",
+        "Price": 14,
+        "PictureUrl": "images/products/glove-Soyuzelle2.png",
+        "ProductTypeId": 4,
+        "ProductBrandId": 4
+    },
+    {
+        "Name": "Reducation Red Boots",
+        "Description": " Adaptogen activated charcoal kogi twee, vexillologist synth direct trade migas wayfarers blog lumbersexual godard.",
+        "Price": 250,
+        "PictureUrl": "images/products/boot-redis1.png",
+        "ProductTypeId": 3,
+        "ProductBrandId": 6
+    },
+    {
+        "Name": "Tankette Red Boots",
+        "Description": "Ramps health goth flannel kombucha. Echo park kale chips blue bottle try-hard beard cronut food truck. Brunch distillery YOLO, hexagon butcher chambray hashtag shabby chic fingerstache mlkshk freegan swag schlitz.",
+        "Price": 189.99,
+        "PictureUrl": "images/products/boot-Tankette2.png",
+        "ProductTypeId": 3,
+        "ProductBrandId": 2
+    },
+    {
+        "Name": "Tankette Purple Boots",
+        "Description": "Unicorn jianbing before they sold out, viral small batch vegan poutine vaporware beard tbh occupy. Brooklyn raclette tofu austin umami 8-bit aesthetic mumblecore plaid hell of kombucha four loko marfa vice.",
+        "Price": 199.99,
+        "PictureUrl": "images/products/boot-Tankette1.png",
+        "ProductTypeId": 3,
+        "ProductBrandId": 2
+    },
+    {
+        "Name": "Gulag Purple Boots",
+        "Description": "APoutine pork belly offal raclette VHS vice locavore disrupt paleo godard street art tumblr. Chillwave pop-up woke everyday carry biodiesel forage chia aesthetic disrupt migas drinking vinegar meditation locavore.",
+        "Price": 150,
+        "PictureUrl": "images/products/boot-ang2.png",
+        "ProductTypeId": 3,
+        "ProductBrandId": 1
+    },
+    {
+        "Name": "Gulag Blue Boots",
+        "Description": "Meditation heirloom iPhone food truck you probably haven't heard of them. Poutine food truck portland biodiesel actually forage. Pork belly biodiesel trust fund, PBR&B iPhone kitsch thundercats semiotics swag man bun readymade raw denim heirloom post-ironic.",
+        "Price": 180,
+        "PictureUrl": "images/products/boot-ang1.png",
+        "ProductTypeId": 3,
+        "ProductBrandId": 1
+    }
 ]
