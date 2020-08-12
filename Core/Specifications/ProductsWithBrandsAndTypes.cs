@@ -5,7 +5,9 @@ namespace Core.Specifications
     public class ProductsWithBrandsAndTypes : BaseSpecification<Product>
     {
         // specification for getting all products with brands and types included
-        public ProductsWithBrandsAndTypes(string sort)
+        public ProductsWithBrandsAndTypes(string sort, int? brandId, int? typeId) : base(x =>
+            (!brandId.HasValue || x.ProductBrandId == brandId) &&
+            (!typeId.HasValue || x.ProductTypeId == typeId))
         {
             AddInclude(x => x.ProductBrand);
             AddInclude(x => x.ProductType);
