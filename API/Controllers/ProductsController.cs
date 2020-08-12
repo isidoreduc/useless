@@ -26,11 +26,11 @@ namespace API.Controllers
             }
 
             [HttpGet]
-            public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts() =>
+            public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts(string sort) =>
                 Ok(
                     mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(
                         await productRepo.GetListAsync(
-                            new ProductsWithBrandsAndTypes()
+                            new ProductsWithBrandsAndTypes(sort)
                         )
                     )
                 );
