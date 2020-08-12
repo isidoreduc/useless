@@ -18,18 +18,20 @@ namespace Core.Specifications
 
             if(!string.IsNullOrEmpty(prodParams.Sort))
             {
-                switch (prodParams.Sort)
-                {
-                    case "priceAsc":
-                        AddOrderBy(x => x.Price);
-                        break;
-                    case "priceDesc":
-                        AddOrderByDescending(x => x.Price);
-                        break;
-                    default:
-                        AddOrderBy(x => x.Name);
-                        break;
-                }
+                if(prodParams.Sort == "priceAsc") AddOrderBy(x => (double)x.Price);
+                if(prodParams.Sort == "priceDesc") AddOrderByDescending(x => (double)x.Price); 
+                // switch (prodParams.Sort)
+                // {
+                //     case "priceAsc":
+                //         AddOrderBy(x => x.Price);
+                //         break;
+                //     case "priceDesc":
+                //         AddOrderByDescending(x => x.Price);
+                //         break;
+                //     default:
+                //         AddOrderBy(x => x.Name);
+                //         break;
+                // }
             }
         }
 
