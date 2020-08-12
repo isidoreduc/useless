@@ -6,6 +6,7 @@ namespace Core.Specifications
     {
         // specification for getting all products with brands and types included
         public ProductsWithBrandsAndTypes(ProductSpecParams prodParams) : base(x =>
+            (string.IsNullOrEmpty(prodParams.Search) || x.Name.ToLower().Contains(prodParams.Search)) &&
             (!prodParams.BrandId.HasValue || x.ProductBrandId == prodParams.BrandId) &&
             (!prodParams.TypeId.HasValue || x.ProductTypeId == prodParams.TypeId))
         {
