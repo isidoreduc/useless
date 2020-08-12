@@ -5,17 +5,19 @@ namespace Core.Specifications
     public class ProductsWithBrandsAndTypes : BaseSpecification<Product>
     {
         // specification for getting all products with brands and types included
-        public ProductsWithBrandsAndTypes(string sort, int? brandId, int? typeId) : base(x =>
-            (!brandId.HasValue || x.ProductBrandId == brandId) &&
-            (!typeId.HasValue || x.ProductTypeId == typeId))
+        public ProductsWithBrandsAndTypes(ProductSpecParams prodParams) : base(x =>
+            (!prodParams.BrandId.HasValue || x.ProductBrandId == prodParams.BrandId) &&
+            (!prodParams.TypeId.HasValue || x.ProductTypeId == prodParams.TypeId))
         {
             AddInclude(x => x.ProductBrand);
             AddInclude(x => x.ProductType);
             AddOrderBy(x => x.Name);
+            ApplyPaging(prodParams.PageSize * (prodParams.PageIndex - 1), prodParams.PageSize);
 
-            if(!string.IsNullOrEmpty(sort))
+
+            if(!string.IsNullOrEmpty(prodParams.Sort))
             {
-                switch (sort)
+                switch (prodParams.Sort)
                 {
                     case "priceAsc":
                         AddOrderBy(x => x.Price);
