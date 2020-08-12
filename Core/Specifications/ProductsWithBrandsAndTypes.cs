@@ -11,17 +11,20 @@ namespace Core.Specifications
             AddInclude(x => x.ProductType);
             AddOrderBy(x => x.Name);
 
-            switch (sort)
+            if(!string.IsNullOrEmpty(sort))
             {
-                case "priceAsc":
-                    AddOrderBy(x => x.Price);
-                    break;
-                case "priceDesc":
-                    AddOrderByDescending(x => x.Price);
-                    break;
-                default:
-                    AddOrderBy(x => x.Name);
-                    break;
+                switch (sort)
+                {
+                    case "priceAsc":
+                        AddOrderBy(x => x.Price);
+                        break;
+                    case "priceDesc":
+                        AddOrderByDescending(x => x.Price);
+                        break;
+                    default:
+                        AddOrderBy(x => x.Name);
+                        break;
+                }
             }
         }
 
