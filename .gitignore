@@ -266,7 +266,7 @@ out/
 # local nuget folder
 nuget/
 
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+client/ssl
 
 # compiled output
 /dist
