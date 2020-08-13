@@ -6,6 +6,6 @@ import { ShopService } from './shop.service';
 @NgModule({
   declarations: [ShopComponent],
   imports: [CommonModule],
-  providers: [ShopService],
+  exports: [ShopComponent],
 })
 export class ShopModule {}
