@@ -3,7 +3,7 @@ import { ShopService } from './shop.service';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/type';
 import { IBrand } from '../shared/models/brand';
-import { Observable } from 'rxjs';
+import { ShopParams } from '../shared/models/shopParams';
 
 @Component({
   selector: 'app-shop',
@@ -14,14 +14,13 @@ export class ShopComponent implements OnInit {
   products: IProduct[];
   types: IType[];
   brands: IBrand[];
-  brandIdSelected = 0;
-  typeIdSelected = 0;
-  sortSelected = 'name';
   sortOptions = [
     { name: 'Alphabetically', value: 'name' },
     { name: 'Price: Low to High', value: 'priceAsc' },
     { name: 'Price: High to Low', value: 'priceDesc' },
   ];
+  shopParams = new ShopParams();
+  totalCount = 0;
 
   constructor(private shopService: ShopService) {}
 
@@ -32,16 +31,17 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.shopService
-      .getProducts(this.brandIdSelected, this.typeIdSelected, this.sortSelected)
-      .subscribe(
-        (response) => {
-          this.products = response.data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.shopService.getProducts(this.shopParams).subscribe(
+      (response) => {
+        this.products = response.data;
+        this.shopParams.pageSize = response.pageSize;
+        this.shopParams.pageIndex = response.pageIndex;
+        this.totalCount = response.count;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   getTypes(): void {
     this.shopService.getTypes().subscribe(
@@ -66,17 +66,22 @@ export class ShopComponent implements OnInit {
   }
 
   onBrandSelected(brandId: number): void {
-    this.brandIdSelected = brandId;
+    this.shopParams.brandId = brandId;
     this.getProducts();
   }
 
   onTypeSelected(typeId: number): void {
-    this.typeIdSelected = typeId;
+    this.shopParams.typeId = typeId;
     this.getProducts();
   }
 
   onSortSelected(sort: string): void {
-    this.sortSelected = sort;
+    this.shopParams.sort = sort;
+    this.getProducts();
+  }
+
+  onPageChanged(event: any): void {
+    this.shopParams.pageSize = event.page;
     this.getProducts();
   }
 }
