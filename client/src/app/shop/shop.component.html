@@ -2,11 +2,12 @@
   <div class="row">
     <section class="col-md-3">
       <header class="text-uppercase text-primary my-3 h4">Sort</header>
-      <select class="custom-select mb-3">
-        <option>Alphabetically</option>
-        <option>Price: low to high</option>
-        <option>Price: high to low</option>
+      <select class="custom-select mb-3" (change)=onSortSelected($event.target.value)>
+        <option *ngFor="let item of sortOptions" [value]="item.value">
+          {{ item.name }}
+        </option>
       </select>
+
       <header class="text-uppercase text-primary my-3 h4">Brands</header>
       <ul class="list-group">
         <li
@@ -19,6 +20,7 @@
           {{ item.name }}
         </li>
       </ul>
+
       <header class="text-uppercase text-primary my-3 h4">Types</header>
       <ul class="list-group" *ngFor="let item of types">
         <li
