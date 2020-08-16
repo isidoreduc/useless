@@ -8,12 +8,27 @@
         <option>Price: high to low</option>
       </select>
       <header class="text-uppercase text-primary my-3 h4">Brands</header>
-      <ul class="list-group" *ngFor="let item of brands">
-        <li class="list-group-item">{{item.name}}</li>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let item of brands"
+          [class.active]="item.id === this.brandIdSelected"
+          [value]="item.id"
+          (click)="onBrandSelected(item.id)"
+        >
+          {{ item.name }}
+        </li>
       </ul>
       <header class="text-uppercase text-primary my-3 h4">Types</header>
       <ul class="list-group" *ngFor="let item of types">
-        <li class="list-group-item">{{ item.name }}</li>
+        <li
+          class="list-group-item"
+          [class.active]="item.id === this.typeIdSelected"
+          [value]="item.id"
+          (click)="onTypeSelected(item.id)"
+        >
+          {{ item.name }}
+        </li>
       </ul>
     </section>
     <section class="col-md-9">
