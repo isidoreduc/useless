@@ -23,7 +23,6 @@ export class ShopComponent implements OnInit {
   totalCount = 0;
   @ViewChild('search') searchTerm: ElementRef;
 
-
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
@@ -37,7 +36,7 @@ export class ShopComponent implements OnInit {
       (response) => {
         this.products = response.data;
         this.shopParams.pageSize = response.pageSize;
-        this.shopParams.pageIndex = response.pageIndex;
+        this.shopParams.pageNumber = response.pageIndex;
         this.totalCount = response.count;
       },
       (error) => {
@@ -69,11 +68,13 @@ export class ShopComponent implements OnInit {
 
   onBrandSelected(brandId: number): void {
     this.shopParams.brandId = brandId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 
   onTypeSelected(typeId: number): void {
     this.shopParams.typeId = typeId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 
@@ -83,12 +84,15 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged(event: any): void {
-    this.shopParams.pageSize = event.page;
-    this.getProducts();
+    if (this.shopParams.pageNumber !== event) {
+      this.shopParams.pageNumber = event;
+      this.getProducts();
+    }
   }
 
   onSearch(): void {
     this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 

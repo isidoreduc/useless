@@ -15,6 +15,6 @@ export class PaginationComponent implements OnInit {
   }
 
   onPageChangedFromChildComponent(event: any): void {
-    this.pageChanged.emit(event);
+    this.pageChanged.emit(event.page);
   }
 }

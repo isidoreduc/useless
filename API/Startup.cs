@@ -44,10 +44,10 @@ namespace API
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var errors = (IEnumerable<string>)actionContext.ModelState
+                    var errors = actionContext.ModelState
                         .Where(e => e.Value.Errors.Count > 0)
                         .SelectMany(x => x.Value.Errors)
-                        .Select(x => x.ErrorMessage.ToArray());
+                        .Select(x => x.ErrorMessage).ToArray();
 
                     var errorResponse = new ApiValidationErrorResponse 
                     {
