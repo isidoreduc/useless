@@ -39,12 +39,12 @@
 
     <section class="col-md-9">
       <div class="d-flex justify-content-between align-items-center pb-2">
-        <header>
-          <span
-            >Showing <strong>8</strong> out of
-            <strong>16</strong> products</span
-          >
-        </header>
+        <app-pagination-header
+          [totalCount]="totalCount"
+          [pageIndex]="shopParams.pageIndex"
+          [pageSize]="shopParams.pageSize"
+        ></app-pagination-header>
+
         <div class="form-inline mt-2">
           <input
             type="text"
