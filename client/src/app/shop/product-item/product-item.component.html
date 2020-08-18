@@ -6,7 +6,7 @@
     class="img-fluid bg-success"
   />
   <div class="card-body d-flex flex-column">
-    <a href="#">
+    <a routerLink="/shop/{{ product.id }}">
       <header class="h6 text-uppercase">{{ product.name }}</header>
     </a>
     <span class="mb-2">{{ product.price | currency }}</span>
@@ -19,8 +19,12 @@
         type="button"
         class="btn btn-outline-primary fa fa-shopping-cart mr-2"
       ></button>
-      <button type="button" class="btn btn-outline-primary">
-        Edit
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        routerLink="/shop/{{ product.id }}"
+      >
+        View
       </button>
     </div>
   </div>
