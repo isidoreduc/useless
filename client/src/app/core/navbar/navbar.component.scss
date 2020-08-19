@@ -10,3 +10,19 @@
   top: -12px;
   right: 32px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &.active{
+    color: orangered;
+  }
+}
+
+.logo {
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+}
