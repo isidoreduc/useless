@@ -20,9 +20,8 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     CoreModule,
     SharedModule,
-    ShopModule,
     HomeModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
