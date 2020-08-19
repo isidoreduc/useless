@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { HomeModule } from './home/home.module';
     SharedModule,
     ShopModule,
     HomeModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],
