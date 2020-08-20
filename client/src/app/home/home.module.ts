@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
   exports: [HomeComponent],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class HomeModule {}

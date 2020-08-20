@@ -5,7 +5,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumb: 'HOME' } },
+  { path: '', component: HomeComponent },
   {
     path: 'shop',
     loadChildren: () =>
