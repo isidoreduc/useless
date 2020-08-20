@@ -1,41 +1,43 @@
 <div class="container">
   <div class="row">
     <section class="col-md-3">
-      <!-- sort by price -->
-      <header class="text-uppercase text-primary my-3 h4">Sort</header>
-      <select
-        class="custom-select mb-3"
-        (change)="onSortSelected($event.target.value)"
-      >
-        <option *ngFor="let item of sortOptions" [value]="item.value">
-          {{ item.name }}
-        </option>
-      </select>
-      <!-- filter by brands -->
-      <header class="text-uppercase text-primary my-3 h4">Brands</header>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let item of brands"
-          [class.active]="item.id === this.shopParams.brandId"
-          [value]="item.id"
-          (click)="onBrandSelected(item.id)"
+      <ng-container *ngIf="types && brands">
+        <!-- sort by price -->
+        <header class="text-uppercase text-primary my-3 h4">Sort</header>
+        <select
+          class="custom-select mb-3"
+          (change)="onSortSelected($event.target.value)"
         >
-          {{ item.name }}
-        </li>
-      </ul>
-      <!-- filter by types -->
-      <header class="text-uppercase text-primary my-3 h4">Types</header>
-      <ul class="list-group" *ngFor="let item of types">
-        <li
-          class="list-group-item"
-          [class.active]="item.id === this.shopParams.typeId"
-          [value]="item.id"
-          (click)="onTypeSelected(item.id)"
-        >
-          {{ item.name }}
-        </li>
-      </ul>
+          <option *ngFor="let item of sortOptions" [value]="item.value">
+            {{ item.name }}
+          </option>
+        </select>
+        <!-- filter by brands -->
+        <header class="text-uppercase text-primary my-3 h4">Brands</header>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let item of brands"
+            [class.active]="item.id === this.shopParams.brandId"
+            [value]="item.id"
+            (click)="onBrandSelected(item.id)"
+          >
+            {{ item.name }}
+          </li>
+        </ul>
+        <!-- filter by types -->
+        <header class="text-uppercase text-primary my-3 pt-3 h4">Types</header>
+        <ul class="list-group" *ngFor="let item of types">
+          <li
+            class="list-group-item"
+            [class.active]="item.id === this.shopParams.typeId"
+            [value]="item.id"
+            (click)="onTypeSelected(item.id)"
+          >
+            {{ item.name }}
+          </li>
+        </ul>
+      </ng-container>
     </section>
 
     <section class="col-md-9">
@@ -47,7 +49,7 @@
           [pageSize]="shopParams.pageSize"
         ></app-pagination-header>
         <!-- search -->
-        <div class="form-inline mt-2">
+        <div class="form-inline mt-2" *ngIf="products">
           <input
             (keyup.enter)="onSearch()"
             #search
