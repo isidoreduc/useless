@@ -36,16 +36,17 @@ namespace API
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-                  services.AddSingleton<ConnectionMultiplexer>(c =>
-                  {
-                    var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
-                    return ConnectionMultiplexer.Connect(configuration);
-                  });
-                  services.Configure<ApiBehaviorOptions>(options => 
+            services.AddSingleton<ConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+            services.Configure<ApiBehaviorOptions>(options => 
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
