@@ -5,13 +5,19 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, data: { breadcrumb: 'HOME' } },
   {
     path: 'shop',
     loadChildren: () =>
       import('./shop/shop.module').then((mod) => mod.ShopModule),
     data: { breadcrumb: 'SHOP' },
-  }, // lazy loading
+  }, // lazy loading of shop data
+  {
+    path: 'basket',
+    loadChildren: () =>
+      import('./basket/basket.module').then((mod) => mod.BasketModule),
+    data: { breadcrumb: 'BASKET' },
+  }, // lazy loading of basket data
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

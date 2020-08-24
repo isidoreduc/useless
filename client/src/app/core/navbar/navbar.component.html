@@ -9,13 +9,19 @@
     class="logo"
   />
   <nav class="my-2 my-md-0 mr-md-3 text-uppercase">
-    <a class="p-2" routerLink="/" routerLinkActive='active' [routerLinkActiveOptions]={exact:true}>Home</a>
-    <a class="p-2" routerLink="/shop" routerLinkActive='active'>Shop</a>
-    <a class="p-2" routerLink="#" routerLinkActive='active'>Contact</a>
-    <a class="p-2" routerLink="#" routerLinkActive='active'>Blog</a>
+    <a
+      class="p-2"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
+    <a class="p-2" routerLink="#" routerLinkActive="active">Contact</a>
+    <a class="p-2" routerLink="#" routerLinkActive="active">Blog</a>
   </nav>
   <div class="d-flex align-items-center">
-    <a class="position-relative">
+    <a routerLink="/basket" class="position-relative">
       <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
       <div class="cart-no">3</div>
     </a>
