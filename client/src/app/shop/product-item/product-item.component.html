@@ -1,6 +1,6 @@
 <!-- h-100 ensures all titles have the same heigh no matter how many rows stretch -->
 <div class="card h-100 shadow-sm">
-  <div class="image" style="cursor: pointer; position: relative;">
+  <div class="image" style="cursor: pointer; position: relative">
     <img
       src="{{ product.pictureUrl }}"
       alt="{{ product.name }}"
@@ -10,6 +10,7 @@
       <button
         type="button"
         class="btn btn-primary fa fa-shopping-cart mr-2"
+        (click)="addItemToBasket()"
       ></button>
       <button
         type="button"
