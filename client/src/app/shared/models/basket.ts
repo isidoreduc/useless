@@ -15,7 +15,7 @@ export interface IBasketItem {
   type: string;
 }
 
-export class BasketItem implements IBasket {
+export class Basket implements IBasket {
   id = uuidv4();
   items: IBasketItem[];
 }
