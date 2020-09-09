@@ -7,29 +7,32 @@ namespace API.Controllers
 {
     public class BasketController : BaseApiController
     {
-       private readonly IBasketRepository _basketRepository;
+        private readonly IBasketRepository _basketRepository;
         public BasketController(IBasketRepository basketRepository)
         {
             _basketRepository = basketRepository;
-        } 
+        }
 
         [HttpGet]
-        public async Task<ActionResult<CustomerBasket>> GetBasketAsync(string basketId)
+        public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
         {
-            var basket = await _basketRepository.GetBasketAsync(basketId);
-            return Ok(basket ?? new CustomerBasket(basketId));
+            var basket = await _basketRepository.GetBasketAsync(id);
+
+            return Ok(basket ?? new CustomerBasket(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerBasket>> UpdateBasketAsync(CustomerBasket basket)
+        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
         {
-            return Ok(await _basketRepository.UpdateBasketAsync(basket));
+            var updatedBasket = await _basketRepository.UpdateBasketAsync(basket);
+
+            return Ok(updatedBasket);
         }
 
         [HttpDelete]
-        public async Task DeleteBasketAsync(string baskeId)
+        public async Task DeleteBasketAsync(string id)
         {
-            await _basketRepository.DeleteBasketAsync(baskeId);
+            await _basketRepository.DeleteBasketAsync(id);
         }
     }
 }
