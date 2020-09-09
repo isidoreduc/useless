@@ -35,7 +35,7 @@
         "Name": "Soyuzelle Board Super Whizzy Fast",
         "Description": "Tofu messenger bag hammock bushwick letterpress knausgaard blue bottle. 8-bit direct trade 3 wolf moon, cray man braid poke schlitz godard chicharrones vegan.",
         "Price": 250,
-        "PictureUrl": "images/products/sb-Soyuzelle1.png",
+        "PictureUrl": "images/products/sb-react1.png",
         "ProductTypeId": 1,
         "ProductBrandId": 4
     },
@@ -115,7 +115,7 @@
         "Name": "Tankette Red Boots",
         "Description": "Ramps health goth flannel kombucha. Echo park kale chips blue bottle try-hard beard cronut food truck. Brunch distillery YOLO, hexagon butcher chambray hashtag shabby chic fingerstache mlkshk freegan swag schlitz.",
         "Price": 189.99,
-        "PictureUrl": "images/products/boot-Tankette2.png",
+        "PictureUrl": "images/products/boot-core2.png",
         "ProductTypeId": 3,
         "ProductBrandId": 2
     },
@@ -123,7 +123,7 @@
         "Name": "Tankette Purple Boots",
         "Description": "Unicorn jianbing before they sold out, viral small batch vegan poutine vaporware beard tbh occupy. Brooklyn raclette tofu austin umami 8-bit aesthetic mumblecore plaid hell of kombucha four loko marfa vice.",
         "Price": 199.99,
-        "PictureUrl": "images/products/boot-Tankette1.png",
+        "PictureUrl": "images/products/boot-core1.png",
         "ProductTypeId": 3,
         "ProductBrandId": 2
     },

@@ -64,23 +64,23 @@ export class BasketService {
     this.setBasket(basket);
   }
 
-  // incrementItemQuantity(item: IBasketItem) {
-  //   const basket = this.getCurrentBasketValue();
-  //   const foundItemIndex = basket.items.findIndex(x => x.id === item.id);
-  //   basket.items[foundItemIndex].quantity++;
-  //   this.setBasket(basket);
-  // }
+  incrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex = basket.items.findIndex((x) => x.id === item.id);
+    basket.items[foundItemIndex].quantity++;
+    this.setBasket(basket);
+  }
 
-  // decrementItemQuantity(item: IBasketItem) {
-  //   const basket = this.getCurrentBasketValue();
-  //   const foundItemIndex = basket.items.findIndex(x => x.id === item.id);
-  //   if (basket.items[foundItemIndex].quantity > 1) {
-  //     basket.items[foundItemIndex].quantity--;
-  //     this.setBasket(basket);
-  //   } else {
-  //     this.removeItemFromBasket(item);
-  //   }
-  // }
+  decrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex = basket.items.findIndex((x) => x.id === item.id);
+    if (basket.items[foundItemIndex].quantity > 1) {
+      basket.items[foundItemIndex].quantity--;
+      this.setBasket(basket);
+    } else {
+      this.removeItemFromBasket(item);
+    }
+  }
 
   removeItemFromBasket(item: IBasketItem) {
     const basket = this.getCurrentBasketValue();
@@ -109,8 +109,8 @@ export class BasketService {
 
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
-    const shipping = 0;
     const subtotal = basket.items.reduce((a, b) => b.price * b.quantity + a, 0);
+    const shipping = subtotal > 500 ? 0 : 4.99;
     const total = subtotal + shipping;
     this.basketTotalSource.next({ shipping, total, subtotal });
   }
