@@ -78,6 +78,7 @@ namespace API
             }
             );
 
+            // swagger setup
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -92,8 +93,26 @@ namespace API
                         Url = new Uri("https://zmaf.ro/"),
                     },
                 });
+
+                var securitySchema = new OpenApiSecurityScheme
+                {
+                    Description = "JWT Auth Bearer Scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+                c.AddSecurityDefinition("Bearer", securitySchema);
+                var securityRequirement = new OpenApiSecurityRequirement {{securitySchema, new[] {"Bearer"}}};
+                c.AddSecurityRequirement(securityRequirement);
             });
             
+            // allow CORS
             services.AddCors(options => 
             {
                 options.AddPolicy("CorsPolicy", policy => 
@@ -108,7 +127,7 @@ namespace API
             builder.AddEntityFrameworkStores<AppIdentityDbContext>();
             builder.AddSignInManager<SignInManager<AppUser>>();
 
-
+            // authentication with JWToken
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => 
                 {
