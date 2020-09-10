@@ -47,19 +47,22 @@ namespace API
             services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
-
+#region sqlite config
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
-
+#endregion
+#region redis config
             services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(Configuration
                     .GetConnectionString("Redis"), true);
                 return ConnectionMultiplexer.Connect(configuration);
             });
+#endregion
 
+#region error handling config
             services.Configure<ApiBehaviorOptions>(options => 
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
@@ -77,8 +80,9 @@ namespace API
                 };
             }
             );
+#endregion
 
-            // swagger setup
+#region swagger config
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -111,8 +115,9 @@ namespace API
                 var securityRequirement = new OpenApiSecurityRequirement {{securitySchema, new[] {"Bearer"}}};
                 c.AddSecurityRequirement(securityRequirement);
             });
-            
-            // allow CORS
+#endregion
+
+#region CORS config
             services.AddCors(options => 
             {
                 options.AddPolicy("CorsPolicy", policy => 
@@ -120,14 +125,16 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
                 });
             });
+#endregion
 
-            // identity services
+#region Identity config
             var builder = services.AddIdentityCore<AppUser>();
             builder = new IdentityBuilder(builder.UserType, builder.Services);
             builder.AddEntityFrameworkStores<AppIdentityDbContext>();
             builder.AddSignInManager<SignInManager<AppUser>>();
+#endregion
 
-            // authentication with JWToken
+#region authentication with JWToken config
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => 
                 {
@@ -140,6 +147,8 @@ namespace API
                         ValidateAudience = false
                     };
                 });
+#endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
