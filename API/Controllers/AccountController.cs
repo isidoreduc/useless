@@ -13,19 +13,19 @@ namespace API.Controllers
 {
       public class AccountController : BaseApiController
       {
-            private readonly UserManager<AppUser> _userManager;
-            private readonly SignInManager<AppUser> _signInManager;
-            private readonly ITokenService _tokenService;
-            private readonly IMapper _mapper;
-            public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IMapper mapper)
-            {
-                  _mapper = mapper;
-                  _tokenService = tokenService;
-                  _signInManager = signInManager;
-                  _userManager = userManager;
-            }
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IMapper mapper)
+        {
+                _mapper = mapper;
+                _tokenService = tokenService;
+                _signInManager = signInManager;
+                _userManager = userManager;
+        }
 
-            [Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDTO>> GetCurrentUser()
         {
@@ -69,61 +69,61 @@ namespace API.Controllers
             return BadRequest("Problem updating the user");
         }
 
-            [HttpPost("login")]
-            public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
-            {
-                  var user = await _userManager.FindByEmailAsync(loginDTO.Email);
-                  if (user == null)
-                  {
-                        return Unauthorized(new ApiErrorResponse(401));
-                  }
-                  var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, false);
-                  if (!result.Succeeded)
-                  {
-                        return Unauthorized(new ApiErrorResponse(401));
-                  }
-                  return new UserDTO
-                  {
-                        Email = user.Email,
-                        Token = _tokenService.CreateToken(user),
-                        DisplayName = user.DisplayName
-                  };
-            }
-
-
-            [HttpPost("register")]
-            public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
-            {
-                //checks if email is already registered (in use)
-                if(CheckEmailExistsAsync(registerDTO.Email).Result.Value)
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
+        {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+                if (user == null)
                 {
-                    return BadRequest(new ApiValidationErrorResponse
-                    {
-                        Errors = new []
-                        {
-                            "Email address is already in use"
-                        }
-                    });
+                    return Unauthorized(new ApiErrorResponse(401));
                 }
-                
-                var user = new AppUser
-                {
-                    DisplayName = registerDTO.DisplayName,
-                    Email = registerDTO.Email,
-                    UserName = registerDTO.Email
-                };
-
-                var result = await _userManager.CreateAsync(user);
+                var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, false);
                 if (!result.Succeeded)
                 {
-                    return BadRequest(new ApiErrorResponse(400));
+                    return Unauthorized(new ApiErrorResponse(401));
                 }
                 return new UserDTO
                 {
-                    DisplayName = user.DisplayName,
+                    Email = user.Email,
                     Token = _tokenService.CreateToken(user),
-                    Email = user.Email
+                    DisplayName = user.DisplayName
                 };
+        }
+
+
+        [HttpPost("register")]
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
+        {
+            //checks if email is already registered (in use)
+            if(CheckEmailExistsAsync(registerDTO.Email).Result.Value)
+            {
+                return BadRequest(new ApiValidationErrorResponse
+                {
+                    Errors = new []
+                    {
+                        "Email address is already in use"
+                    }
+                });
             }
-      }
+            
+            var user = new AppUser
+            {
+                DisplayName = registerDTO.DisplayName,
+                Email = registerDTO.Email,
+                UserName = registerDTO.Email
+            };
+
+            var result = await _userManager.CreateAsync(user);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new ApiErrorResponse(400));
+            }
+            return new UserDTO
+            {
+                DisplayName = user.DisplayName,
+                Token = _tokenService.CreateToken(user),
+                Email = user.Email
+            };
+        }
+    }
 }
