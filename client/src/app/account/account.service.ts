@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from '../shared/models/user';
 
@@ -75,4 +75,23 @@ export class AccountService {
   checkEmailExist = (email: string) =>
     this.http.get(this.baseUrl + 'account/emailExists?email=' + email);
   //#endregion
+
+  loadCurrentUser(token: string) {
+    // if (token === null) {
+    //   this.currentUserSource.next(null);
+    //   return of(null);
+    // }
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.baseUrl + 'account', { headers }).pipe(
+      map((user: IUser) => {
+        if (user) {
+          localStorage.setItem('token', user.token);
+          this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
+
+  getCurrentUserValue = () => this.currentUserSource.value;
 }
