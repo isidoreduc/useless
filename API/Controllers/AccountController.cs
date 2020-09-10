@@ -94,24 +94,36 @@ namespace API.Controllers
             [HttpPost("register")]
             public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
             {
-                  var user = new AppUser
-                  {
-                        DisplayName = registerDTO.DisplayName,
-                        Email = registerDTO.Email,
-                        UserName = registerDTO.Email
-                  };
+                //checks if email is already registered (in use)
+                if(CheckEmailExistsAsync(registerDTO.Email).Result.Value)
+                {
+                    return BadRequest(new ApiValidationErrorResponse
+                    {
+                        Errors = new []
+                        {
+                            "Email address is already in use"
+                        }
+                    });
+                }
+                
+                var user = new AppUser
+                {
+                    DisplayName = registerDTO.DisplayName,
+                    Email = registerDTO.Email,
+                    UserName = registerDTO.Email
+                };
 
-                  var result = await _userManager.CreateAsync(user);
-                  if (!result.Succeeded)
-                  {
-                        return BadRequest(new ApiErrorResponse(400));
-                  }
-                  return new UserDTO
-                  {
-                        DisplayName = user.DisplayName,
-                        Token = _tokenService.CreateToken(user),
-                        Email = user.Email
-                  };
+                var result = await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return BadRequest(new ApiErrorResponse(400));
+                }
+                return new UserDTO
+                {
+                    DisplayName = user.DisplayName,
+                    Token = _tokenService.CreateToken(user),
+                    Email = user.Email
+                };
             }
       }
 }
