@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginationHeaderComponent } from './components/pagination-header/pagination-header.component';
@@ -12,13 +13,19 @@ import { OrderTotalsComponent } from './components/order-totals/order-totals.com
     PaginationComponent,
     OrderTotalsComponent,
   ],
-  imports: [CommonModule, PaginationModule.forRoot(), CarouselModule.forRoot()],
+  imports: [
+    CommonModule,
+    PaginationModule.forRoot(),
+    CarouselModule.forRoot(),
+    ReactiveFormsModule,
+  ],
   exports: [
     PaginationModule,
     PaginationHeaderComponent,
     PaginationComponent,
     CarouselModule,
     OrderTotalsComponent,
+    ReactiveFormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
