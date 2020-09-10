@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 import { PaginationHeaderComponent } from './components/pagination-header/pagination-header.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
@@ -17,6 +19,7 @@ import { OrderTotalsComponent } from './components/order-totals/order-totals.com
     CommonModule,
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
+    BsDropdownModule.forRoot(),
     ReactiveFormsModule,
   ],
   exports: [
@@ -24,8 +27,10 @@ import { OrderTotalsComponent } from './components/order-totals/order-totals.com
     PaginationHeaderComponent,
     PaginationComponent,
     CarouselModule,
+    BsDropdownModule,
     OrderTotalsComponent,
     ReactiveFormsModule,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
