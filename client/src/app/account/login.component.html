@@ -5,26 +5,15 @@
         <h1 class="h3 mb-3 font-weight-normal">Login</h1>
       </div>
 
-      <div class="form-label-group">
-        <input
-          formControlName="email"
-          type="email"
-          id="inputEmail"
-          class="form-control"
-          placeholder="Email Address"
-        />
-        <label for="inputEmail">EmailAddress</label>
-      </div>
-      <div class="form-label-group">
-        <input
-          formControlName="password"
-          type="password"
-          id="inputPassword"
-          class="form-control"
-          placeholder="inputPassword"
-        />
-        <label for="password">Password</label>
-      </div>
+      <app-text-input
+        formControlName="email"
+        [label]="'Email Address'"
+      ></app-text-input>
+      <app-text-input
+        formControlName="password"
+        [label]="'Password'"
+        [type]="'password'"
+      ></app-text-input>
 
       <button
         [disabled]="loginForm.invalid"
@@ -35,4 +24,11 @@
       </button>
     </form>
   </div>
+
+  <!-- <div class="col-md-3">
+    <p>form status: {{ this.loginForm.status }}</p>
+    <p>email status: {{ this.loginForm.get("email").status }}</p>
+    <p>email touched: {{ this.loginForm.get("email").touched }}</p>
+    <p>email dirty: {{ this.loginForm.get("email").dirty }}</p>
+  </div> -->
 </div>

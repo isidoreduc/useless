@@ -8,12 +8,14 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PaginationHeaderComponent } from './components/pagination-header/pagination-header.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 @NgModule({
   declarations: [
     PaginationHeaderComponent,
     PaginationComponent,
     OrderTotalsComponent,
+    TextInputComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,7 @@ import { OrderTotalsComponent } from './components/order-totals/order-totals.com
     BsDropdownModule,
     OrderTotalsComponent,
     ReactiveFormsModule,
-
+    TextInputComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
