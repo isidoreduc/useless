@@ -72,7 +72,7 @@ export class AccountService {
    * returns a boolean on email existance
    * </summary>
    */
-  checkEmailExist = (email: string) =>
+  checkEmailExists = (email: string) =>
     this.http.get(this.baseUrl + 'account/emailExists?email=' + email);
   //#endregion
 
