@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.returnUrl =
-    //   this.activatedRoute.snapshot.queryParams.returnUrl || '/shop';
+    this.returnUrl =
+      this.activatedRoute.snapshot.queryParams.returnUrl || '/shop';
     this.createLoginForm();
   }
 
@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern('(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;\'?/&gt;.&lt;,])(?!.*\\s).*$')
+        Validators.pattern(
+          "(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\\s).*$"
+        ),
       ]),
     });
   }
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.accountService.login(this.loginForm.value).subscribe(
       () => {
-        this.router.navigateByUrl('/shop');
+        this.router.navigateByUrl(this.returnUrl);
       },
       (error) => {
         console.log(error);
