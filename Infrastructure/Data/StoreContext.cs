@@ -15,9 +15,11 @@ namespace Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
+        //dotnet ef migrations add ProductInitial  -p .\Infrastructure\ -s .\API\ -c StoreContext
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        //dotnet ef migrations add OrderInitial  -p .\Infrastructure\ -s .\API\ -c StoreContext
 
 
 
@@ -25,7 +27,7 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
+            // providing a conversion from decimal to double as sqlite does not support decimal type
             if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
             {
                 foreach (var entityType in modelBuilder.Model.GetEntityTypes())
