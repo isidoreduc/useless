@@ -4,22 +4,19 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Infrastructure.Data;
 
 namespace Infrastructure.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IGenericRepository<Order> _orderRepo;
-        private readonly IGenericRepository<DeliveryMethod> _deliveryMethodRepo;
-        private readonly IGenericRepository<Product> _productRepo;
         private readonly IBasketRepository _basketRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public OrderService(IGenericRepository<Order> orderRepo, IGenericRepository<DeliveryMethod> deliveryMethodRepo, IGenericRepository<Product> productRepo, IBasketRepository basketRepo)
+        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
         {
+            _unitOfWork = unitOfWork;
             _basketRepo = basketRepo;
-            _productRepo = productRepo;
-            _deliveryMethodRepo = deliveryMethodRepo;
-            _orderRepo = orderRepo;
         }
 
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, Address shippingAddress)
@@ -31,7 +28,7 @@ namespace Infrastructure.Services
             foreach (var item in basket.Items)
             {
                 // get product item form db
-                var productItem = await _productRepo.GetOneAsync(item.Id);
+                var productItem = await _unitOfWork.Repository<Product>().GetOneAsync(item.Id);
                 // get the basket item product info from db
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 // create an order item with the trusted price info from the db, not from client
@@ -40,13 +37,19 @@ namespace Infrastructure.Services
                 orderItems.Add(finalOrderItem);
             }
             // get the deliveryMethod from repo (we only have the delivery id at this stage)
-            var deliveryMethod = await _deliveryMethodRepo.GetOneAsync(deliveryMethodId);
+            var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetOneAsync(deliveryMethodId);
             // calculate subtotal from the prices we get from repo
             var subtotal = orderItems.Sum(item => item.Price * item.Quantity);
-            // create order
+            // create order and add it to context
             var order = new Order(orderItems, buyerEmail, shippingAddress, deliveryMethod, subtotal);
+            _unitOfWork.Repository<Order>().Add(order);
             // save order to the db
-            //TODO
+            var result = await _unitOfWork.Complete();
+            // check if changes were persisted to db. If not, a rollback of all changes occurs
+            if(result <= 0) return null;
+
+            // delete basket
+            await _basketRepo.DeleteBasketAsync(basketId);
             // return order
             return order;
         }
