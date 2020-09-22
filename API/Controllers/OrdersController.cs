@@ -21,22 +21,27 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetAllOrdersForCurrentUser() =>
-            Ok(await _orderService.GetOrdersForUserAsync(HttpContext.User.ReturnEmailFromPrincipal()));
-        // {
-        //     var email = HttpContext.User.ReturnEmailFromPrincipal();
-        //     var orders = await _orderService.GetOrdersForUserAsync(email)
-        //     return Ok(orders);
-        // }
+        public async Task<ActionResult<IEnumerable<OrderToReturnDTO>>> GetAllOrdersForCurrentUser() =>
+            Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderToReturnDTO>>(
+                await _orderService.GetOrdersForUserAsync(HttpContext.User.ReturnEmailFromPrincipal())
+                )
+            );
+    // {
+    //     var email = HttpContext.User.ReturnEmailFromPrincipal();
+    //     var orders = await _orderService.GetOrdersForUserAsync(email);
+    //     var mapping = _mapper.Map<IEnumerable<Order>, IEnumerable<OrderToReturnDTO>>(orders);
+    //     return Ok(mapping);
+    // }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrderById(int id)
+    [HttpGet("{id}")]
+        public async Task<ActionResult<OrderToReturnDTO>> GetOrderById(int id)
         {
             var email = HttpContext.User.ReturnEmailFromPrincipal();
             var order = await _orderService.GetOrderByIdAsync(id, email);
             if(order == null) 
                 return NotFound(new ApiErrorResponse(404));
-            return Ok(order);
+            var mapping = _mapper.Map<Order, OrderToReturnDTO>(order);
+            return Ok(mapping);
         }
 
         [HttpGet("deliveryMethods")]
