@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 using Infrastructure.Data;
 
 namespace Infrastructure.Services
@@ -54,19 +55,22 @@ namespace Infrastructure.Services
             return order;
         }
 
-        public Task<IEnumerable<DeliveryMethod>> GetDeliveryMethodsAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<IEnumerable<DeliveryMethod>> GetDeliveryMethodsAsync() =>
+            await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
-        public Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public Task<IEnumerable<Order>> GetOrdersForUserAsync(string buyerEmail)
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail) =>
+            await _unitOfWork.Repository<Order>().GetEntityWithSpec(new OrdersWithItemsAndDeliverySpecification(id, buyerEmail));
+        // {
+        //     var spec = new OrdersWithItemsAndDeliverySpecification(id, buyerEmail);
+        //     return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+        // }
+
+        public async Task<IEnumerable<Order>> GetOrdersForUserAsync(string buyerEmail) =>
+            await _unitOfWork.Repository<Order>().GetListAsync(new OrdersWithItemsAndDeliverySpecification(buyerEmail));
+        // {
+        //     var spec = new OrdersWithItemsAndDeliverySpecification(buyerEmail);
+        //     return await _unitOfWork.Repository<Order>().GetListAsync(spec);
+        // }
     }
 }

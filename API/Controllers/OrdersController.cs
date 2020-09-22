@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Errors;
@@ -18,6 +19,29 @@ namespace API.Controllers
             _mapper = mapper;
             _orderService = orderService;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Order>>> GetAllOrdersForCurrentUser() =>
+            Ok(await _orderService.GetOrdersForUserAsync(HttpContext.User.ReturnEmailFromPrincipal()));
+        // {
+        //     var email = HttpContext.User.ReturnEmailFromPrincipal();
+        //     var orders = await _orderService.GetOrdersForUserAsync(email)
+        //     return Ok(orders);
+        // }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> GetOrderById(int id)
+        {
+            var email = HttpContext.User.ReturnEmailFromPrincipal();
+            var order = await _orderService.GetOrderByIdAsync(id, email);
+            if(order == null) 
+                return NotFound(new ApiErrorResponse(404));
+            return Ok(order);
+        }
+
+        [HttpGet("deliveryMethods")]
+        public async Task<ActionResult<IEnumerable<DeliveryMethod>>> GetAllDeliveryMethods() =>
+            Ok(await _orderService.GetDeliveryMethodsAsync());
 
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrderAsync(OrderDTO orderDTO)
