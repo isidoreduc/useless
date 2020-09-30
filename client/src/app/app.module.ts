@@ -10,7 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { LoadingInterceptor } from './core/loading.interceptor';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { LoadingInterceptor } from './core/loading.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

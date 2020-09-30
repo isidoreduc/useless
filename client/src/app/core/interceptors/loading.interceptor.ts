@@ -6,7 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BusyService } from './busy.service';
+import { BusyService } from '../busy.service';
 import { delay, finalize } from 'rxjs/operators';
 
 @Injectable()
