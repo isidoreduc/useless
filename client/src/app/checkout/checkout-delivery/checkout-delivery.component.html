@@ -1,13 +1,14 @@
 <div class="mt-4" [formGroup]="checkoutFormInput">
+  <h4 class="mb-3">Choose your delivery method</h4>
   <!-- formGroupName is the one in checkout.component.ts created for delivery methods(deliveryForm) -->
-  <div class="row" formGroupName="deliveryForm">
+  <div class="row ml-5" formGroupName="deliveryForm">
     <div class="col-md-6 form-group" *ngFor="let item of deliveryMethods">
       <!-- formGroupName is the one in checkout.component.ts inside deliveryForm(deliveryMethod) -->
       <input
         type="radio"
-        value="{{ item.id }}"
         id="{{ item.id }}"
-        formGroupName="deliveryMethod"
+        value="{{ item.id }}"
+        formControlName="deliveryMethod"
         class="custom-control-input"
       />
       <!-- custom-control-input/label are bootstrap classes -->
