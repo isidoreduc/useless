@@ -11,6 +11,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { StepperComponent } from './components/stepper/stepper.component';
+import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     OrderTotalsComponent,
     TextInputComponent,
     StepperComponent,
+    BasketSummaryComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
     CdkStepperModule,
+    RouterModule
   ],
   exports: [
     PaginationModule,
@@ -39,6 +43,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     TextInputComponent,
     CdkStepperModule,
     StepperComponent,
+    BasketSummaryComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
