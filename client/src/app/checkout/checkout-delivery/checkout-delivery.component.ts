@@ -9,7 +9,7 @@ import { CheckoutService } from '../checkout.service';
   styleUrls: ['./checkout-delivery.component.scss'],
 })
 export class CheckoutDeliveryComponent implements OnInit {
-  @Input() checkoutForm: FormGroup;
+  @Input() checkoutFormInput: FormGroup;
   deliveryMethods: IDelivery[];
 
   constructor(private checkoutService: CheckoutService) {}
