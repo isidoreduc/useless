@@ -10,6 +10,7 @@ import {
   IBasketTotals,
 } from '../shared/models/basket';
 import { IProduct } from '../shared/models/product';
+import { IDelivery } from '../shared/models/delivery';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ export class BasketService {
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
   basketTotal$ = this.basketTotalSource.asObservable();
+  shippingPrice = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -110,7 +112,8 @@ export class BasketService {
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     const subtotal = basket.items.reduce((a, b) => b.price * b.quantity + a, 0);
-    const shipping = subtotal > 500 ? 0 : 4.99;
+    // shipping free on orders over $500
+    const shipping = subtotal > 500 ? 0 : this.shippingPrice;
     const total = subtotal + shipping;
     this.basketTotalSource.next({ shipping, total, subtotal });
   }
@@ -150,4 +153,9 @@ export class BasketService {
       type: item.productType,
     };
   }
+
+  setShippingPrice = (deliveryMethod: IDelivery): void => {
+    this.shippingPrice = deliveryMethod.price;
+    this.calculateTotals();
+  };
 }

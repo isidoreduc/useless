@@ -1,5 +1,5 @@
 <div class="mt-4" [formGroup]="checkoutFormInput">
-  <h4 class="mb-3">Choose your delivery method</h4>
+  <h4 class="mb-3 p-2">Choose your delivery method</h4>
   <!-- formGroupName is the one in checkout.component.ts created for delivery methods(deliveryForm) -->
   <div class="row ml-5" formGroupName="deliveryForm">
     <div class="col-md-6 form-group" *ngFor="let item of deliveryMethods">
@@ -10,6 +10,7 @@
         value="{{ item.id }}"
         formControlName="deliveryMethod"
         class="custom-control-input"
+        (click)="setShippingPrice(item)"
       />
       <!-- custom-control-input/label are bootstrap classes -->
       <label for="{{ item.id }}" class="custom-control-label">
