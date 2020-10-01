@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IDelivery } from '../shared/models/delivery';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IOrderToCreate } from '../shared/models/order';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,14 @@ import { map } from 'rxjs/operators';
 export class CheckoutService {
   baseUrl = environment.apiUrl;
 
-  constructor (private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   // gets delivery methods sorted by price, highest price first
   getDeliveryMethods = (): Observable<IDelivery[]> =>
     this.httpClient
       .get(this.baseUrl + 'orders/deliveryMethods')
       .pipe(map((dm: IDelivery[]) => dm.sort((a, b) => a.price - b.price)));
+
+  createOrder = (order: IOrderToCreate) =>
+    this.httpClient.post(this.baseUrl + 'orders', order);
 }

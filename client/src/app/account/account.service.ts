@@ -116,6 +116,6 @@ export class AccountService {
    * </summary>
    */
   updateUserAddress = (address: IAddress) =>
-    this.http.put<IAddress>(this.baseUrl + 'account/address', address);
+    this.http.put<IAddress>(this.baseUrl + 'account/address/', address);
   //#endregion
 }
