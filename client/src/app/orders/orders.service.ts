@@ -12,5 +12,8 @@ export class OrdersService {
   getOrders = () =>
     this.httpClient
       .get(this.baseUrl + 'orders')
-      .pipe(map((orders: IOrder[]) => orders.sort((a, b) => a.id - b.id)));
+      .pipe(map((orders: IOrder[]) => orders.sort((a, b) => b.id - a.id)));
+
+  getOrder = (id: number) =>
+    this.httpClient.get<IOrder>(this.baseUrl + 'orders/' + id);
 }

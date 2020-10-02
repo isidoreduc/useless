@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <table class="table">
-    <thead class="thead-light">
+    <thead class="thead-light table-hover" style="cursor: pointer">
       <tr>
         <th scope="col">Order</th>
         <th scope="col">Date</th>
@@ -9,9 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of orders" routerLink="/orders/{{item.id}}">
+      <tr *ngFor="let item of orders" routerLink="/orders/{{ item.id }}">
         <th scope="row">#{{ item.id }}</th>
-        <td>{{ item.orderDate | date: "short" }}</td>
+        <td>{{ item.orderDate | date: "medium" }}</td>
         <td>{{ item.total | currency }}</td>
         <td>{{ item.status }}</td>
       </tr>
