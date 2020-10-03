@@ -32,7 +32,7 @@ namespace Infrastructure.Services
             // get the delivery price
             if(basket.DeliveryMethodId.HasValue)
             {
-                var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetOneAsync((int)basket.DeliveryMethodId);
+                var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetOneAsync(basket.DeliveryMethodId ?? 1);
                 deliveryPrice = deliveryMethod.Price;
             }
             // check if the price of items in the basket coming from client is the same as the in our database - don't trust the client!
@@ -72,4 +72,5 @@ namespace Infrastructure.Services
         }
 
     }
+     
 }
