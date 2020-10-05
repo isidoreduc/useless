@@ -18,5 +18,6 @@ namespace Core.Entities
         public int? DeliveryMethodId { get; set; }
         public string StripeClientSecret { get; set; }
         public string PaymentIntentId { get; set; } // for updating the payment intent
+        public decimal ShippingPrice { get; set; }
     }
 }
