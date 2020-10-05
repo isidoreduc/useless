@@ -27,6 +27,16 @@ export class BasketService {
 
   constructor(private http: HttpClient) {}
 
+  createPaymentIntent = () =>
+    this.http
+      .post(this.baseUrl + `payments/${this.getCurrentBasketValue().id}`, {})
+      .pipe(
+        map((basket: IBasket) => {
+          this.basketSource.next(basket);
+          console.log(this.getCurrentBasketValue());
+        })
+      );
+
   getBasket(id: string) {
     return this.http.get(this.baseUrl + 'basket?id=' + id).pipe(
       map((basket: IBasket) => {
@@ -119,9 +129,10 @@ export class BasketService {
     const basket = this.getCurrentBasketValue();
     const subtotal = basket.items.reduce((a, b) => b.price * b.quantity + a, 0);
     // shipping free on orders over $500
-    const shipping = subtotal > 500 ? 0 : this.shippingPrice;
+    //const shipping = subtotal > 500 ? 0 : this.shippingPrice;
+    const shipping = this.shippingPrice;
     const total = subtotal + shipping;
-    this.basketTotalSource.next({ shipping, total, subtotal });
+    this.basketTotalSource.next({ shipping, subtotal, total });
   }
 
   private addOrUpdateItem(
