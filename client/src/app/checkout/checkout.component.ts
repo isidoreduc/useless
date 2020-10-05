@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AccountService } from '../account/account.service';
+import { BasketService } from '../basket/basket.service';
+import { IBasketTotals } from '../shared/models/basket';
 
 @Component({
   selector: 'app-checkout',
@@ -9,15 +12,19 @@ import { AccountService } from '../account/account.service';
 })
 export class CheckoutComponent implements OnInit {
   checkOutForm: FormGroup;
+  baskeTotals$: Observable<IBasketTotals>;
 
   constructor(
     private fb: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private basketService: BasketService
   ) {}
 
   ngOnInit(): void {
     this.createCheckOutForm();
     this.getAddressFormValues();
+    this.getDeliveryMethodValue();
+    this.baskeTotals$ = this.basketService.basketTotal$;
   }
 
   createCheckOutForm = () => {
@@ -50,5 +57,14 @@ export class CheckoutComponent implements OnInit {
     );
   };
 
-  
+  // if we choose a delivery method in checkout process, it is stored in the basket info; 
+  // in case we go back to store to add another product, when back to checkout, the delivery method will be remembered
+  getDeliveryMethodValue = () => {
+    const basket = this.basketService.getCurrentBasketValue();
+    if (basket.deliveryMethodId !== null)
+      this.checkOutForm
+        .get('deliveryForm')
+        .get('deliveryMethod')
+        .patchValue(basket.deliveryMethodId.toString());
+  };
 }
