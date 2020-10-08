@@ -3,15 +3,17 @@ import {
   Component,
   ElementRef,
   Input,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 import { BasketService } from 'src/app/basket/basket.service';
+import { CheckoutService } from '../checkout.service';
+import { FormGroup } from '@angular/forms';
 import { IBasket } from 'src/app/shared/models/basket';
 import { IOrderToCreate } from 'src/app/shared/models/order';
-import { CheckoutService } from '../checkout.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var Stripe;
 
@@ -20,7 +22,7 @@ declare var Stripe;
   templateUrl: './checkout-payment.component.html',
   styleUrls: ['./checkout-payment.component.scss'],
 })
-export class CheckoutPaymentComponent implements AfterViewInit {
+export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   @Input() checkoutFormInput: FormGroup;
   @ViewChild('cardNumber', { static: true }) cardNumberElement: ElementRef;
   @ViewChild('cardExpiry', { static: true }) cardExpiryElement: ElementRef;
@@ -30,6 +32,7 @@ export class CheckoutPaymentComponent implements AfterViewInit {
   cardExpiry: any;
   cardCvc: any;
   cardErrors: any;
+  cardHandler = this.onChange.bind(this);
 
   constructor(
     private checkoutService: CheckoutService,
@@ -47,30 +50,34 @@ export class CheckoutPaymentComponent implements AfterViewInit {
 
     this.cardNumber = elements.create('cardNumber');
     this.cardNumber.mount(this.cardNumberElement.nativeElement);
-    // this.cardNumber.addEventListener('change', this.cardHandler);
+    this.cardNumber.addEventListener('change', this.cardHandler);
 
     this.cardExpiry = elements.create('cardExpiry');
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
-    // this.cardExpiry.addEventListener('change', this.cardHandler);
+    this.cardExpiry.addEventListener('change', this.cardHandler);
 
     this.cardCvc = elements.create('cardCvc');
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
-    // this.cardNumber.addEventListener('change', this.cardHandler);
+    this.cardNumber.addEventListener('change', this.cardHandler);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.cardNumber.destroy();
     this.cardExpiry.destroy();
     this.cardCvc.destroy();
   }
 
-  // onChange({error}) {
-  //   if (error) {
-  //     this.cardErrors = error.message;
-  //   } else {
-  //     this.cardErrors = null;
-  //   }
-  // }	  
+  // parameter - destructuring, getting the error property  from stripe
+  // onChange = ({ error }): void =>
+  //   error ? (this.cardErrors = error.message) : (this.cardErrors = null)
+
+  onChange({ error }): void {
+    if (error) {
+      this.cardErrors = error.message;
+    } else {
+      this.cardErrors = null;
+    }
+  }
 
   submitOrder = () => {
     const basket = this.basketService.getCurrentBasketValue();
@@ -87,7 +94,7 @@ export class CheckoutPaymentComponent implements AfterViewInit {
         console.log(error);
       }
     );
-  };
+  }
 
   private getOrderToCreate(basket: IBasket): IOrderToCreate {
     return {
