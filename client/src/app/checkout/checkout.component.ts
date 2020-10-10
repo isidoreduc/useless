@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
         nameOnCard: [null, Validators.required],
       }),
     });
-  }
+  };
 
   getAddressFormValues = () => {
     this.accountService.getUserAddress().subscribe(
