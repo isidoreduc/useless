@@ -16,7 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
     SharedModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      preventDuplicates: true, 
+      preventDuplicates: true,
     }),
   ],
   exports: [NavbarComponent, SectionHeaderComponent, ToastrModule],

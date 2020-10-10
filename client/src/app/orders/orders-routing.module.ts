@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { OrdersComponent } from './orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrdersComponent } from './orders.component';
+import { RouterModule } from '@angular/router';
 
 const routes = [
   { path: '', component: OrdersComponent },
@@ -15,7 +14,7 @@ const routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [ RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class OrdersRoutingModule {}

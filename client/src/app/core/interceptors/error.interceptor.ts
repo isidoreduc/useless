@@ -21,12 +21,14 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err) => {
         if (err) {
-          if (err.status === 400)
+          if (err.status === 400) {
             this.toastr.error(err.error, err.error.statusCode);
-          if (err.status === 401)
+          }
+          if (err.status === 401) {
             this.toastr.error(err.error, err.error.statusCode);
-          if (err.status === 404) this.router.navigateByUrl('/not-found');
-          if (err.status === 500) this.router.navigateByUrl('/server-error');
+          }
+          if (err.status === 404) { this.router.navigateByUrl('/not-found'); }
+          if (err.status === 500) { this.router.navigateByUrl('/server-error'); }
         }
         return throwError(err);
       })

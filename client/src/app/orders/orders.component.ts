@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { IOrder } from '../shared/models/order';
 import { OrdersService } from './orders.service';
 
@@ -18,10 +19,10 @@ export class OrdersComponent implements OnInit {
 
   getOrders = () =>
     this.orderService.getOrders().subscribe(
-      (o) => {
+      (o: IOrder[]) => {
         this.orders = o;
         // console.log(this.orders);
       },
       (err) => console.log(err)
-    );
+    )
 }

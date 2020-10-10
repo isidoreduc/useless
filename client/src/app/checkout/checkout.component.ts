@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+
 import { AccountService } from '../account/account.service';
 import { BasketService } from '../basket/basket.service';
 import { IBasketTotals } from '../shared/models/basket';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -12,19 +13,19 @@ import { IBasketTotals } from '../shared/models/basket';
 })
 export class CheckoutComponent implements OnInit {
   checkOutForm: FormGroup;
-  baskeTotals$: Observable<IBasketTotals>;
+  basketTotals$: Observable<IBasketTotals>;
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
     private basketService: BasketService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createCheckOutForm();
     this.getAddressFormValues();
     this.getDeliveryMethodValue();
-    this.baskeTotals$ = this.basketService.basketTotal$;
+    this.basketTotals$ = this.basketService.basketTotal$;
   }
 
   createCheckOutForm = () => {
@@ -44,12 +45,12 @@ export class CheckoutComponent implements OnInit {
         nameOnCard: [null, Validators.required],
       }),
     });
-  };
+  }
 
   getAddressFormValues = () => {
     this.accountService.getUserAddress().subscribe(
       (address) => {
-        if (address) this.checkOutForm.get('addressForm').patchValue(address);
+        if (address) { this.checkOutForm.get('addressForm').patchValue(address); }
       },
       (error) => {
         console.log(error);
@@ -57,14 +58,15 @@ export class CheckoutComponent implements OnInit {
     );
   };
 
-  // if we choose a delivery method in checkout process, it is stored in the basket info; 
+  // if we choose a delivery method in checkout process, it is stored in the basket info;
   // in case we go back to store to add another product, when back to checkout, the delivery method will be remembered
   getDeliveryMethodValue = () => {
     const basket = this.basketService.getCurrentBasketValue();
-    if (basket.deliveryMethodId !== null)
+    if (basket.deliveryMethodId !== null) {
       this.checkOutForm
         .get('deliveryForm')
         .get('deliveryMethod')
         .patchValue(basket.deliveryMethodId.toString());
+    }
   };
 }

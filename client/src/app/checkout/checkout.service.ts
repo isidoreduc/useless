@@ -18,8 +18,8 @@ export class CheckoutService {
   getDeliveryMethods = (): Observable<IDelivery[]> =>
     this.httpClient
       .get(this.baseUrl + 'orders/deliveryMethods')
-      .pipe(map((dm: IDelivery[]) => dm.sort((a, b) => a.price - b.price)));
+      .pipe(map((dm: IDelivery[]) => dm.sort((a, b) => a.price - b.price)))
 
   createOrder = (order: IOrderToCreate) =>
-    this.httpClient.post(this.baseUrl + 'orders', order);
+    this.httpClient.post(this.baseUrl + 'orders', order)
 }

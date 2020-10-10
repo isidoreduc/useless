@@ -20,5 +20,5 @@ export class CheckoutAddressComponent implements OnInit {
         () => console.log('Success'),
         (error) => console.log(error)
       );
-  };
+  }
 }
