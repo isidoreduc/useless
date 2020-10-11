@@ -59,6 +59,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     this.cardCvc.destroy();
   }
 
+  // stripe validation
   onChange(event) {
     if (event.error) {
       this.cardErrors = event.error.message;
@@ -81,7 +82,6 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   async submitOrder() {
     this.loading = true;
     const basket = this.basketService.getCurrentBasketValue();
-    console.log(basket.stripeClientSecret);
     try {
       const createdOrder = await this.createOrder(basket);
       const paymentResult = await this.confirmPaymentWithStripe(basket);
