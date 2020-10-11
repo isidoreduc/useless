@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {
+  Basket,
   IBasket,
   IBasketItem,
-  Basket,
   IBasketTotals,
 } from '../shared/models/basket';
-import { IProduct } from '../shared/models/product';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
 import { IDelivery } from '../shared/models/delivery';
+import { IProduct } from '../shared/models/product';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 
-// tslint:disable: typedef
 export class BasketService {
   baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);

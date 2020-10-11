@@ -81,6 +81,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   async submitOrder() {
     this.loading = true;
     const basket = this.basketService.getCurrentBasketValue();
+    console.log(basket.stripeClientSecret);
     try {
       const createdOrder = await this.createOrder(basket);
       const paymentResult = await this.confirmPaymentWithStripe(basket);
@@ -100,7 +101,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   }
 
   private async confirmPaymentWithStripe(basket) {
-    return this.stripe.confirmCardPayment(basket.clientSecret, {
+    return this.stripe.confirmCardPayment(basket.stripeClientSecret, {
       payment_method: {
         card: this.cardNumber,
         billing_details: {
