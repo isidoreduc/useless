@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <None Include="Data/SeedData/**" CopyToOutputDirectory="PreserveNewest"/>
     <ProjectReference Include="..\Core\Core.csproj"/>
   </ItemGroup>
   <ItemGroup>
@@ -15,6 +16,7 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1"/>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1"/>
     <PackageReference Include="Stripe.net" Version="39.11.0"/>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
