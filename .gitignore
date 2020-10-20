@@ -3,8 +3,7 @@ obj
 appsettings.json
 *.db
 *.rdb
-publish
-wwwroot
+
 
 
 
