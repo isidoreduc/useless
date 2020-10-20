@@ -26,7 +26,7 @@ namespace API.Controllers
       this.productRepo = productRepo;
     }
 
-    [Cached(600)]
+    // [Cached(6000)]
     [HttpGet]
     public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery] ProductSpecParams productParams)
     {
@@ -44,7 +44,7 @@ namespace API.Controllers
       return Ok(new Pagination<ProductDTO>(productParams.PageIndex, productParams.PageSize, totalItems, data));
     }
 
-    [Cached(600)]
+    // [Cached(6000)]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProductById(int id) =>
         Ok(
@@ -57,12 +57,12 @@ namespace API.Controllers
             )
         );
 
-    [Cached(600)]
+    // [Cached(6000)]
     [HttpGet("brands")]
     public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands() =>
         Ok(await brandRepo.GetAllAsync());
 
-    [Cached(600)]
+    // [Cached(6000)]
     [HttpGet("types")]
     public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes() =>
         Ok(await typeRepo.GetAllAsync());
